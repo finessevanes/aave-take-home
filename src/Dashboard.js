@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { ethers } from 'ethers'
 import { ButtonStyle } from './styles'
 
@@ -15,6 +16,10 @@ const Dashboard = () => {
   // Fuji V3 Pool-Proxy-Avalanche
   // https://docs.aave.com/developers/deployed-contracts/v3-testnet-addresses
   const POOL_CONTRACT_ADDRESS = '0xb47673b7a73D78743AFF1487AF69dBB5763F00cA'
+
+  useEffect(()=>{
+    getUSDCBalance()
+  }, [])
 
   async function supplyFunds() {
     try {
@@ -44,6 +49,14 @@ const Dashboard = () => {
       console.log(supplyTxn)
 
     } catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function getUSDCBalance() {
+    try {
+      console.log('the balance here')
+    } catch(e){
       console.log(e)
     }
   }
