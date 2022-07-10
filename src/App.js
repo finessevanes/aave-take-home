@@ -53,17 +53,18 @@ function App() {
     <div className=''>
       <div className='flex justify-end'>
         {currentAccount && (
-          <div className='text-gradient-300 font-bold bg-white border-gradient-200 border-2 rounded-lg py-2 px-3 m-3 '>{`${currentAccount.slice(0, 4)}...${currentAccount.slice(38)}`}</div>
+          <div className='text-gradient-300 font-bold bg-white opacity-75 rounded-lg py-2 px-3 m-3 '>{`${currentAccount.slice(0, 4)}...${currentAccount.slice(38)}`}</div>
         )}
       </div>
-      <div className='flex justify-center items-center h-screen'>
+      <div className='flex justify-center h-screen'>
         {
-          !currentAccount && (<button className={ButtonStyle} onClick={connectWallet}>
+          currentAccount ? (
+            <Dashboard />
+          ) : (<button className={`${ButtonStyle} self-center`} onClick={connectWallet}>
             Connect Wallet
           </button>
           )
         }
-        <Dashboard />
       </div>
     </div>
   );

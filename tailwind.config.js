@@ -6,11 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'gradient-100': '#E9B6C7',
-        'gradient-200': '#8F2A4B',
-        'gradient-250': '#72223c',
-        'gradient-300': '#060A1F',
-        'gradient-350': '#1e2235'
+        'gradient-100': '#778daf',
+        'gradient-200': '#7c70a0',
+        'gradient-250': '#995299',
+        'gradient-300': '#41236b',
+        'gradient-350': '#321b52',
+        'gradient-400': '#281642'
       },
     },
   },
