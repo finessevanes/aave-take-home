@@ -54,20 +54,17 @@ const Dashboard = () => {
     }
   }
 
-
   async function getAVAXBalance() {
     try {
-      const { ethereum } = window
-      const provider = new ethers.providers.Web3Provider(ethereum)
-      const signer = provider.getSigner()
-      const connectedContract = new ethers.Contract(WALLET_BALANCE_PROVIDER_CONTRACT, WalletBalanceProviderABI.abi, signer)
+      const ethers = require("ethers")
+      const network = "https://api.avax-test.network/ext/bc/C/rpc"
+      const provider = ethers.getDefaultProvider(network)
 
-      // https://docs.aave.com/developers/periphery-contracts/uipooldataproviderv3#getreservesdata
-      let balanceOfTxn = await connectedContract.balanceOf(PUBLIC_KEY, AVAX_ADDRESS_ERC20)
-
-      
-
-      console.log('AVAX Balance: ', balanceOfTxn.toNumber())
+      provider.getBalance(PUBLIC_KEY).then((balance) => {
+        // convert a currency unit from wei to ether
+        const balanceInAvax = ethers.utils.formatEther(balance)
+        console.log(`balance: ${balanceInAvax} AVAX`)
+      })
     } catch (e) {
       console.log(e)
     }
@@ -78,8 +75,8 @@ const Dashboard = () => {
     <div className='flex flex-col'>
       <div>Dashboard</div>
       <button
-      onClick={supplyFunds}
-      className={`${ButtonStyle} + mt-3`}
+        onClick={supplyFunds}
+        className={`${ButtonStyle} + mt-3`}
       >
         Add Funds
       </button>
