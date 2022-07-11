@@ -56,6 +56,7 @@ const Dashboard = () => {
     }
   }
 
+  // Does not call Aave contract
   async function getAvaxWalletBalance() {
     try {
       const ethers = require("ethers")
@@ -79,7 +80,8 @@ const Dashboard = () => {
       const connectedContract = new ethers.Contract(UI_POOL_PROVIDER_V3_CONTRACT, UiPoolDataProviderV3ABI.abi, signer)
 
       // https://docs.aave.com/developers/periphery-contracts/uipooldataproviderv3#getreservesdata
-      let balanceOfTxn = await connectedContract.getUserReservesHumanized()
+      // function getReservesData(IPoolAddressesProvider provider)
+      let balanceOfTxn = await connectedContract.getReservesData(provider)
 
       console.log('AVAX Balance: ', balanceOfTxn.toNumber())
     } catch (e) {
