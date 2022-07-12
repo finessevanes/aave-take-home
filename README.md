@@ -62,3 +62,4 @@ Ensure it has enough (or access to enough) funds when liquidating.
 Calculate the profitability of liquidating loans vs gas costs, taking into account the most lucrative collateral to liquidate.
 Ensure it has access to the latest protocol user data.
 Have the usual fail safes and security you'd expect for any production service.
+# aave-take-home
