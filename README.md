@@ -63,3 +63,4 @@ Calculate the profitability of liquidating loans vs gas costs, taking into accou
 Ensure it has access to the latest protocol user data.
 Have the usual fail safes and security you'd expect for any production service.
 # aave-take-home
+# aave-take-home
