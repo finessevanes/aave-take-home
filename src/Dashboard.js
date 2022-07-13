@@ -3,6 +3,9 @@ import { ButtonStyle, FormStyle } from './styles'
 import { ethers} from 'ethers'
 import erc20ABI from './ABIs/erc20ABI.json'
 
+// NOTES:
+// the assignment was to supply USDC, and then borrow the max in USDC. wouldn't a more real use case be that a user supplies token_a and then borrows token_b?
+
 // van...ado.eth public key
 const PUBLIC_KEY = '0x7EEa9F4A69c3a43d333366Efc0798523910b146D'
 
@@ -108,6 +111,8 @@ const Dashboard = () => {
       console.log(e)
     }
   }
+
+  // when borrowing, you would want to account for gas fees, meaning whatever you are able to borrow will be less than when you have for collateral 
 
   useEffect(() => {
     getUSDCBalance()
