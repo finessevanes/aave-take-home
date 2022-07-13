@@ -6,8 +6,6 @@
 
 Output the user’s balance of USDC token
 
-⚠️ Outputting the user's balance of AVAX
-
 Execute a transaction to borrow the maximum amount of USDC using the collateral supplied in the previous step
 
 Output the users collateral and borrow balances
@@ -15,6 +13,7 @@ Output the users collateral and borrow balances
 ## Writing
 ### QA
 #### ❓ How can I get a list of the recent liquidations on the Aave Polygon V3 market?
+I wasn't able to confirm this, but I think you might be able to use GraphQL, since that is the tool used to get user account information to determine whealth of the loan. I researched polyscan to see if they had an api endpoint, they do not. Using the Pool Contract for Polygon (0x794a61358D6845594F94dc1DB02A252b5b4814aD) I searched in polygoscan for `liquidationCall` but couldn't find it in the first 500 transactions listed.
 #### ❓ How do I get my token listed on Aave?
 __✅ A:__ In order to have your token added to the Aave ecosystem, you will need to complete the following tasks:
 
@@ -57,25 +56,12 @@ If the price changes are under the deviation as stated from above, then it will 
 
 Aave also has their own backup price oracle incase Chainlink breaks.
 #### ❓ I’m interested in building a liquidation bot, what do I need to get started on this?
-__✅ A:__ Depending on your environment, preferred programming tools and languages, your bot should:
-Ensure it has enough (or access to enough) funds when liquidating.
-Calculate the profitability of liquidating loans vs gas costs, taking into account the most lucrative collateral to liquidate.
-Ensure it has access to the latest protocol user data.
-Have the usual fail safes and security you'd expect for any production service.
+__✅ A:__ To get started, you want to consider the following four things:
 
+1. Check the balance of your bot. You need funds in order to liquidate.
 
-owner:
-0x7eea9f4a69c3a43d333366efc0798523910b146d
-spender:
-0xb47673b7a73D78743AFF1487AF69dBB5763F00cA
-value:
-1000000000000000000000
-nonce:
-0
-deadline:
-1657677638
-// first approval
+2. Check your profits. Gas isn't free
 
-// supply w permit
- Supply With Permit (Address, Uint256, Address, Uint16, Uint256, Uint8, Bytes32, Bytes32)
+3. Keep current protool user data
 
+4. Write tests and keep security top of mind

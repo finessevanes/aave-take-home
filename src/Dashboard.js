@@ -10,15 +10,17 @@ const Dashboard = () => {
   // _______ AAVE V3 FUJI CONTRACTS _______
   // https://docs.aave.com/developers/deployed-contracts/v3-testnet-addresses
   const POOL_PROXY_CONTRACT = '0xb47673b7a73D78743AFF1487AF69dBB5763F00cA' // given
+  const UI_POOL_DATA_PROVIDER_V3_CONTRACT = '0x1D01f7d8B42Ec47837966732f831E1D6321df499'
+  const POOL_ADDRESS_PROVIDER = '0x1775ECC8362dB6CaB0c7A9C0957cF656A5276c29'
 
   // to get  balances
   // const UI_POOL_PROVIDER_V3_CONTRACT = '0x1D01f7d8B42Ec47837966732f831E1D6321df499'
-  // const WALLET_BALANCE_PROVIDER_CONTRACT = '0xd19443202328A66875a51560c28276868B8C61C2'
+  const WALLET_BALANCE_PROVIDER_CONTRACT = '0xd19443202328A66875a51560c28276868B8C61C2'
 
   // _______ MAINNET ABIs _______
   const PoolV3ABI = require('@aave/core-v3/artifacts/contracts/protocol/pool/Pool.sol/Pool.json')
-  // const UiPoolDataProviderV3ABI = require('@aave/periphery-v3/artifacts/contracts/misc/UiPoolDataProviderV3.sol/UiPoolDataProviderV3.json')
-  // const WalletBalanceProviderABI = require('@aave/periphery-v3/artifacts/contracts/misc/WalletBalanceProvider.sol/WalletBalanceProvider.json')
+  const UiPoolDataProviderV3ABI = require('@aave/periphery-v3/artifacts/contracts/misc/UiPoolDataProviderV3.sol/UiPoolDataProviderV3.json')
+  const WalletBalanceProviderABI = require('@aave/periphery-v3/artifacts/contracts/misc/WalletBalanceProvider.sol/WalletBalanceProvider.json')
   // const PoolAddressesProviderABI = require('@aave/core-v3/artifacts/contracts/protocol/configuration/PoolAddressesProvider.sol/PoolAddressesProvider.json')
 
   // _______ TestnetMintableERC20 _______
@@ -30,6 +32,7 @@ const Dashboard = () => {
 
   const [USDC, setUSDC] = useState('')
   const [WAVAX, setWAVAX] = useState('')
+  const [reservesData, setReservesData] = useState([])
 
   async function getUSDCBalance() {
     try {
@@ -92,9 +95,24 @@ const Dashboard = () => {
     }
   }
 
+  async function getCollateralBalance(){
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const walletBalanceProviderContract = new ethers.Contract(WALLET_BALANCE_PROVIDER_CONTRACT, WalletBalanceProviderABI.abi, provider)
+      let userWalletBalances = await walletBalanceProviderContract.getUserWalletBalances(POOL_ADDRESS_PROVIDER, PUBLIC_KEY)
+      console.log('balances DAI: ', userWalletBalances[1][0].toString())
+      console.log('balances USDC: ', userWalletBalances[1][2].toString())
+      console.log('balances: WAVAX', userWalletBalances[1][8].toString())
+      // balances are not correct
+    } catch(e){
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
     getUSDCBalance()
     getAVAXBalance()
+    getCollateralBalance()
   }, [])
 
   return (
