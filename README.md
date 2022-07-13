@@ -2,7 +2,7 @@
 ## Coding
 ✅ Take a private key as an input which will represent a users wallet
 
-✅ Execute a transaction to supply the user’s entire USDC balance to the Aave V3 Pool
+ Execute a transaction to supply the user’s entire USDC balance to the Aave V3 Pool
 
 Output the user’s balance of USDC token
 
@@ -62,5 +62,20 @@ Ensure it has enough (or access to enough) funds when liquidating.
 Calculate the profitability of liquidating loans vs gas costs, taking into account the most lucrative collateral to liquidate.
 Ensure it has access to the latest protocol user data.
 Have the usual fail safes and security you'd expect for any production service.
-# aave-take-home
-# aave-take-home
+
+
+owner:
+0x7eea9f4a69c3a43d333366efc0798523910b146d
+spender:
+0xb47673b7a73D78743AFF1487AF69dBB5763F00cA
+value:
+1000000000000000000000
+nonce:
+0
+deadline:
+1657677638
+// first approval
+
+// supply w permit
+ Supply With Permit (Address, Uint256, Address, Uint16, Uint256, Uint8, Bytes32, Bytes32)
+
