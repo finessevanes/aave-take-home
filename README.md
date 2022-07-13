@@ -1,4 +1,9 @@
 # Aave Take-Home
+## To run
+```
+npm install
+npm run start
+```
 ## Coding
 ✅ Take a private key as an input which will represent a users wallet
 
